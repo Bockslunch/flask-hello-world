@@ -38,7 +38,7 @@ def inserting():
         conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
         cur = conn.cursor()
         cur.execute('''
-            INSERT INTO Basketball (First, Last, City, Name, Number)
+            INSERT INTO "Basketball" (First, Last, City, Name, Number)
             VALUES 
             ('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
             ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
@@ -58,7 +58,7 @@ def dropping():
     conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
     cur = conn.cursor()
     cur.execute('''
-        DROP TABLE Basketball;
+        DROP TABLE "Basketball";
         ''')
     conn.commit()
     cur.close()
@@ -69,7 +69,7 @@ def dropping():
 def selecting():
     conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
     cur = conn.cursor()
-    cur.execute('SELECT * FROM Basketball;')
+    cur.execute('SELECT * FROM "Basketball";')
     records = cur.fetchall()
     cur.close()
     conn.close()
