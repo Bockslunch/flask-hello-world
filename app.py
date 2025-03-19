@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return 'Hello, World from Christopher Taylor in 3308'
 
 @app.route('/db_test')
 def testing():
@@ -41,7 +41,8 @@ def inserting():
         ('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
         ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
         ('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
-        ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2);
+        ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2),
+        ('Christopher', 'Taylor', 'CU Boulder', 'Burndown For What', '3308');
         ''')
     conn.commit()
     cur.close()
