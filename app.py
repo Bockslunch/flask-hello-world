@@ -27,6 +27,7 @@ def creating():
         );
         ''')
     conn.commit()
+    cur.close()
     conn.close()
     return "Basketball Table Successfully Created"
 
@@ -40,9 +41,10 @@ def inserting():
         ('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
         ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
         ('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
-        {'Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2);
+        ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2);
         ''')
     conn.commit()
+    cur.close()
     conn.close()
     return "Basketball Table Successfully Populated"
 
@@ -54,6 +56,7 @@ def dropping():
         DROP TABLE Basketball;
         ''')
     conn.commit()
+    cur.close()
     conn.close()
     return "Basketball Table Successfully Dropped"
 
@@ -65,6 +68,7 @@ def selecting():
         SELECT * FROM Basketball;
         ''')
     records = cur.fetchall()
+    cur.close()
     conn.close()
     response_string=""
     response_string+="<table>"
