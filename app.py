@@ -18,7 +18,7 @@ def creating():
     conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
     cur = conn.cursor()
     cur.execute('''
-        CREATE TABLE IF NOT EXISTS Basketball (
+        CREATE TABLE IF NOT EXISTS "Basketball" (
         First VARCHAR(255),
         Last VARCHAR(255),
         City VARCHAR(255),
@@ -64,18 +64,14 @@ def dropping():
 def selecting():
     conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
     cur = conn.cursor()
-    cur.execute('''
-        SELECT * FROM Basketball;
-        ''')
+    cur.execute('SELECT * FROM Basketball;')
     records = cur.fetchall()
     cur.close()
     conn.close()
-    response_string=""
-    response_string+="<table>"
+
+    response_string = "<table border='1'><thead><tr><th>First</th><th>Last</th><th>City</th><th>Name</th><th>Number</th></tr></thead><tbody>"
     for player in records:
-        response_string+="<tr>"
-        for info in player:
-            response_string+="<td>{}</td>".format(info)
-        response_string+="</tr>"
-    response_string+="</table>"
+        response_string += "<tr>" + "".join(f"<td>{info}</td>" for info in player) + "</tr>"
+    response_string += "</tbody></table>"
     return response_string
+
