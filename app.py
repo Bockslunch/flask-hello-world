@@ -33,21 +33,24 @@ def creating():
 
 @app.route('/db_insert')
 def inserting():
-    conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
-    cur = conn.cursor()
-    cur.execute('''
-        INSERT INTO Basketball (First, Last, City, Name, Number)
-        VALUES 
-        ('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
-        ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
-        ('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
-        ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2),
-        ('Christopher', 'Taylor', 'CU Boulder', 'Burndown For What', 3308);
+    try:
+        conn = psycopg2.connect("postgresql://bockslunch_render_db_user:kuiNmHM1X0fiqIkKVgAo3326iRfK8vgH@dpg-cvcus3dds78s7384rmbg-a/bockslunch_render_db")
+        cur = conn.cursor()
+        cur.execute('''
+            INSERT INTO Basketball (First, Last, City, Name, Number)
+            VALUES 
+            ('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
+            ('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
+            ('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
+            ('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2),
+            ('Christopher', 'Taylor', 'CU Boulder', 'Burndown For What', 3308);
         ''')
-    conn.commit()
-    cur.close()
-    conn.close()
-    return "Basketball Table Successfully Populated"
+        conn.commit()
+        cur.close()
+        conn.close()
+        return "Basketball Table Successfully Populated"
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 @app.route('/db_drop')
 def dropping():
